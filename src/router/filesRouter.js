@@ -1,30 +1,39 @@
 const express = require("express");
 const router = express.Router();
 const { updateDoc, uploadDocs } = require("../middlewares/multer");
+const Files = require("../services/filesService")
 const nameOfFile = "originalname";
+const path = require("../../routePath");
+const multer = require("multer");
 
-router.post("/newRegister", uploadDocs, async (req, res) =>{
+const service = new Files();
+
+router.post("/newRegister", uploadDocs, (req, res) =>{
     try {
-        // const { body } = req
-        // console.log(body)
-        const nameFiles = [
-            req.files.actaNacimiento[0][nameOfFile],
-            req.files.comprobanteDomicilio[0][nameOfFile],
-            req.files.comprobanteEstudios[0][nameOfFile]
-        ];        
-        res.json({ message: "saveNewRegister"})
+        const URLs = service.constructorURL(req.files, req.body.curp)
+        res.json(URLs)
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.post("/updateFile", updateDoc, (req, res) => {
+    try {        
+        res.json({ message: "saveUpdateFile"})
     } catch (error) {
         console.log(error)
     }
 })
 
-router.post("/updateFile", updateDoc, async (req, res) =>{
-    try {
-        console.log(req.file[nameOfFile])        
-        res.json({ message: "saveUpdateFile"})
-    } catch (error) {
-        console.log(error)
-    }
+
+
+router.get("/buscar", (req, res)=> {
+    const { curp, typeDocument } = req.query;    
+    const name = `${curp.toUpperCase()}-${typeDocument}.jpg`
+    res.render("findResult", {
+        titulo: "Comprobar documentación",
+        render: name
+    })
 })
 
 module.exports = router;

@@ -1,16 +1,37 @@
 const multer = require("multer");
-const docsRoute = require("../../docsRoute");
-const nameOfFile = "originalname";
+const routePath = require("../../routePath");
 
 const storage = multer.diskStorage({
-    destination: docsRoute,    
-    filename: (req, file, cb) => {        
-        cb(null, file[nameOfFile]);
+    destination: routePath  + "/public/docs/",
+    filename: function(req, file, cb){    
+        const ext = file.mimetype.split("/")[1]        
+        cb("", req.body.curp + "-" +  file.fieldname + "." + ext)    
     }
 })
 
+const filter = (req, file, cb) => {
+    if (
+    file.mimetype == "image/jpg" ||
+    file.mimetype == "image/jpeg" ||
+    file.mimetype == "image/png" ||
+    file.mimetype == "application/pdf") 
+    {
+        cb(null, true)
+    } else {
+        cb(null, false)
+        console.log("Tipo de archivo invalido", file.mimetype)
+        
+    }
+    
+};
+
 const upload = multer({
-    storage: storage
+    storage: storage,
+    fileFilter: filter,
+    limits: {
+        fileSize: 3000000
+        //Archivos deben ser menores a 3MB.
+    }
 })
 
 const uploadDocs =  upload.fields([

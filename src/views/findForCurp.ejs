@@ -1,0 +1,15 @@
+<%- include("./templates/header") %>
+<h3>Busqueda de Archivos enviados por usuarios inscritos en cecati13.com.mx</h3>
+<form action="/files/buscar">
+    <label for="curp">CURP</label>
+    <input type="¿Cual es la CURP?" name="curp" id="">
+    <label for="">Selecciona el Tipo de Archivo</label>    
+    <select name="typeDocument" id="">
+        <option value="actaNacimiento">Acta de Nacimiento</option>
+        <option value="comprobanteDomicilio">Domicilio</option>
+        <option value="comprobanteEstudios">Grado de Estudios</option>
+    </select>
+    <button>Enviar</button>
+</form>
+
+<%- include("./templates/footer.ejs") %>

@@ -1,5 +1,5 @@
 //este archivo no debe ser ignorado
 //ruta para guardar los archivos/documentos recibos en este servidor
-const docsRoute = __dirname + "/docs/";
+const routePath = __dirname;
 
-module.exports = docsRoute;
+module.exports = routePath;

@@ -1,0 +1,19 @@
+:root {
+    --color1: #120907;
+    --color2: #292744;
+    --color3 : #625d92;
+    --color4 : #a599e9;
+    --color5: #efcfed;
+}
+
+body {
+    background-color: var(--color1);
+}
+
+html {
+    color: var(--color5);
+}
+
+img {
+    width: 350px;
+}
