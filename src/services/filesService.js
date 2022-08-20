@@ -1,4 +1,4 @@
-const localURL = "http://localhost:3500/";
+const { host } = require("../config");
 
 class Files {
     constructor(){}
@@ -20,7 +20,7 @@ class Files {
 
     createURL(file, curp, type){ 
         const ext = file[0].mimetype.split("/")[1];       
-        const url = `${localURL}docs/${curp}-${type}.${ext}`
+        const url = `${host}docs/${curp}-${type}.${ext}`
         return url
     }
 }
