@@ -19,7 +19,7 @@ router.post("/", uploadDocs, (req, res) =>{
 
 router.get("/buscar", (req, res)=> {
     const { curp, typeDocument } = req.query;    
-    const name = `${curp.toUpperCase()}-${typeDocument}.jpg`
+    const name = `${curp.toUpperCase()}-${typeDocument}.jpeg`
     res.render("findResult", {
         titulo: "Comprobar documentación",
         render: name
