@@ -18,11 +18,8 @@ const filter = (req, file, cb) => {
     {
         cb(null, true)
     } else {
-        cb(null, false)
-        console.log("Tipo de archivo invalido", file.mimetype)
-        
+        cb( (new Error("TYPE_FORMAT_INVALID")), false)            
     }
-    
 };
 
 const upload = multer({
@@ -40,9 +37,4 @@ const uploadDocs =  upload.fields([
     { name: 'comprobanteEstudios', maxCount: 1 }
 ]);
 
-const updateDoc = upload.single("update");
-
-module.exports = {
-    uploadDocs: uploadDocs,
-    updateDoc: updateDoc,    
-};
+module.exports = { uploadDocs };

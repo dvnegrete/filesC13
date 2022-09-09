@@ -3,42 +3,38 @@ const { host } = require("../config");
 class Files {
     constructor(){}
 
-    constructorURL(files, curp){
-        try {
-            let objActaNacimiento = {}
-            let objComprobanteDomicilio = {}
-            let objComprobanteEstudios = {}
+    constructorURL(files, curp){        
+        let objActaNacimiento = {}
+        let objComprobanteDomicilio = {}
+        let objComprobanteEstudios = {}
 
-            if (files.actaNacimiento) {
-                const actaNacimiento = this.createURL(
-                    files.actaNacimiento, curp, "actaNacimiento");
-                const obj = this.createObj(actaNacimiento, "actaNacimiento")
-                objActaNacimiento = {...obj}
-            }
-
-            if (files.comprobanteDomicilio) {            
-                const comprobanteDomicilio = this.createURL(
-                    files.comprobanteDomicilio, curp, "comprobanteDomicilio");
-                const obj = this.createObj(comprobanteDomicilio, "comprobanteDomicilio")
-                objComprobanteDomicilio = {...obj}
-            }
-            
-            if (files.comprobanteEstudios) {
-                const comprobanteEstudios = this.createURL(
-                    files.comprobanteEstudios, curp, "comprobanteEstudios");
-                const obj = this.createObj(comprobanteEstudios, "comprobanteEstudios")
-                objComprobanteEstudios = {...obj}
-            }
-            
-            const objReturn = {
-                ...objActaNacimiento,
-                ...objComprobanteDomicilio,
-                ...objComprobanteEstudios
-            }
-            return objReturn;
-        } catch (error) {
-            console.log(error)
+        if (files.actaNacimiento) {
+            const actaNacimiento = this.createURL(
+                files.actaNacimiento, curp, "actaNacimiento");
+            const obj = this.createObj(actaNacimiento, "actaNacimiento")
+            objActaNacimiento = {...obj}
         }
+
+        if (files.comprobanteDomicilio) {            
+            const comprobanteDomicilio = this.createURL(
+                files.comprobanteDomicilio, curp, "comprobanteDomicilio");
+            const obj = this.createObj(comprobanteDomicilio, "comprobanteDomicilio")
+            objComprobanteDomicilio = {...obj}
+        }
+        
+        if (files.comprobanteEstudios) {
+            const comprobanteEstudios = this.createURL(
+                files.comprobanteEstudios, curp, "comprobanteEstudios");
+            const obj = this.createObj(comprobanteEstudios, "comprobanteEstudios")
+            objComprobanteEstudios = {...obj}
+        }
+        
+        const objReturn = {
+            ...objActaNacimiento,
+            ...objComprobanteDomicilio,
+            ...objComprobanteEstudios
+        }
+        return objReturn;       
     }
 
     createObj(url, name) {

@@ -6,8 +6,8 @@ function routerAPI(app){
     const router = express.Router();
     app.use("/", router)
     
-    router.get("/prueba", (req, res)=> {        
-        res.send("ServerFiles");        
+    router.get("/", (req, res)=> {
+        res.json({status: true});
     })
 
     router.use("/files", files);

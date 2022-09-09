@@ -6,7 +6,7 @@ function logsError(err, req, res, next) {
 
 function errorHandler(err, req, res, next) {
     res.json({
-        "message": err,        
+        "error": err,        
     });
 }
 

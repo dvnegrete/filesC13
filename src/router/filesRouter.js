@@ -1,19 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const { uploadDocs } = require("../middlewares/multer");
-const Files = require("../services/filesService")
-const nameOfFile = "originalname";
-const path = require("../../routePath");
-const multer = require("multer");
+const Files = require("../services/filesService");
 
 const service = new Files();
 
-router.post("/", uploadDocs, (req, res) =>{
+router.post("/", uploadDocs, (req, res, next) =>{
     try {
         const URLs = service.constructorURL(req.files, req.body.curp)
         res.json(URLs)
     } catch (error) {
-        next(error)
+        next(error);        
     }
 })
 
